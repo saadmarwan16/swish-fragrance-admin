@@ -1,0 +1,102 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "total": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": [
+        "Cash",
+        "Card",
+        "Mobile Money",
+        "Paypal"
+      ],
+      "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "orders"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": [
+        "Paid",
+        "Unpaid"
+      ],
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "orders"
+    },
+    "address": {
+      "type": "text",
+      "required": false
+    },
+    "city": {
+      "type": "string",
+      "required": false
+    },
+    "region": {
+      "type": "string",
+      "required": false
+    },
+    "country": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Processing",
+        "Dispatched",
+        "Completed",
+        "Cancelled"
+      ]
+    },
+    "delivery_date": {
+      "type": "date",
+      "required": true
+    },
+    "sub_total": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "discount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "delivery_cost": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "delivered_date": {
+      "type": "date"
+    },
+    "cost_price": {
+      "type": "decimal"
+    }
+  }
+}
